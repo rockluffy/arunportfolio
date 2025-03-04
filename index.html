@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arun Kumar Das Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #00796b;
+            --secondary: #4dd0e1;
+            --accent: #ff6b6b;
+            --light: #f8f9fa;
+            --dark: #2c3e50;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #e0f7fa 0%, #b2ebf2 100%);
+            color: var(--dark);
+            animation: fadeIn 1s ease-out;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 2rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 60vh;
+            background: url('https://images.unsplash.com/photo-1585152758708-8a9b4c35a5e5') no-repeat center center/cover;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            margin-bottom: 40px;
+        }
+
+        .hero-content {
+            position: absolute;
+            bottom: 40px;
+            left: 40px;
+            color: white;
+            max-width: 500px;
+        }
+
+        .hero-content h1 {
+            font-size: 2.5rem;
+            margin: 0;
+            background: linear-gradient(45deg, #fff, #eee);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .profile-image {
+            position: absolute;
+            bottom: -50px;
+            right: -50px;
+            width: 400px;
+            height: 400px;
+            background: var(--secondary);
+            border-radius: 50%;
+            transform: rotate(-15deg);
+            transition: transform 0.3s;
+            z-index: 1;
+        }
+
+        .profile-image:hover {
+            transform: rotate(-15deg) scale(1.05);
+        }
+
+        .profile-image img {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 360px;
+            height: 360px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 5px solid white;
+            box-shadow: 0 0 20px rgba(0,0,0,0.2);
+        }
+
+        /* Navigation */
+        .nav-links {
+            position: fixed;
+            right: 40px;
+            top: 40px;
+            display: flex;
+            gap: 20px;
+            z-index: 1000;
+        }
+
+        .nav-link {
+            color: var(--primary);
+            background: white;
+            padding: 12px 20px;
+            border-radius: 25px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .nav-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+        }
+
+        /* Section Styling */
+        .section {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 20px 0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section-header {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+
+        .section-header h2 {
+            display: inline-block;
+            padding: 10px 20px;
+            background: var(--primary);
+            color: white;
+            border-radius: 25px;
+            margin: 0;
+        }
+
+        .section-header::after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 2px;
+            background: var(--primary);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* Education Section */
+        .education-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .edu-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            position: relative;
+        }
+
+        .edu-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+        }
+
+        .edu-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .edu-degree {
+            color: var(--primary);
+            margin: 0.5rem 0;
+        }
+
+        .edu-institute {
+            color: var(--secondary);
+            margin: 0.5rem 0;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .skill-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+        }
+
+        .skill-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .skill-name {
+            color: var(--dark);
+            margin: 1rem 0;
+        }
+
+        .circular-progress {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: conic-gradient(var(--primary) 0%, var(--primary) 95%, #eee 95%);
+            margin: 0 auto 1rem;
+            position: relative;
+            animation: fillCircle 1.5s ease-out;
+        }
+
+        .progress-value {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+
+        /* Experience Section */
+        .timeline {
+            position: relative;
+            padding: 20px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 2px;
+            background: var(--secondary);
+        }
+
+        .timeline-item {
+            padding: 20px 0;
+            position: relative;
+        }
+
+        .timeline-item-content {
+            padding: 20px;
+            background: var(--light);
+            border-radius: 10px;
+            position: relative;
+        }
+
+        .timeline-item-content::before {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-top: 15px solid transparent;
+            border-bottom: 15px solid transparent;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-item-content {
+            margin-left: 60px;
+        }
+
+        .timeline-item:nth-child(even) .timeline-item-content {
+            margin-right: 60px;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-item-content::before {
+            border-right: 15px solid var(--light);
+            left: -30px;
+            top: 30px;
+        }
+
+        .timeline-item:nth-child(even) .timeline-item-content::before {
+            border-left: 15px solid var(--light);
+            right: -30px;
+            top: 30px;
+        }
+
+        /* Contact Section */
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .contact-card {
+            background: var(--light);
+            border-radius: 10px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .contact-card i {
+            color: var(--primary);
+            font-size: 1.5rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero {
+                height: 50vh;
+            }
+            
+            .nav-links {
+                flex-direction: column;
+                right: 20px;
+                top: 20px;
+            }
+            
+            .timeline::before {
+                left: 20px;
+            }
+            
+            .timeline-item {
+                padding: 10px 0;
+            }
+            
+            .timeline-item-content {
+                margin: 0 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <div class="hero-content">
+            <h1>Arun Kumar Das</h1>
+            <p class="lead">Innovative Structural Engineer</p>
+            <div class="social-icons">
+                <a href="https://bit.ly/4bkcX13" target="_blank" class="nav-link">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+            </div>
+        </div>
+        <div class="profile-image">
+            <img src="img/profile.jpg" alt="Arun Kumar Das">
+        </div>
+    </div>
+
+    <div class="container">
+        <nav class="nav-links">
+            <a href="#about" class="nav-link">About</a>
+            <a href="#experience" class="nav-link">Experience</a>
+            <a href="#skills" class="nav-link">Skills</a>
+            <a href="#education" class="nav-link">Education</a>
+            <a href="#contact" class="nav-link">Contact</a>
+        </nav>
+
+        <section id="about" class="section">
+            <div class="section-header">
+                <h2>About Me</h2>
+            </div>
+            <p>Innovative Structural Engineer adept at leveraging advanced design software and analytical skills to create resilient structures that meet safety and performance standards. Highly skilled in coordinating cross-functional teams to enhance project execution and deliver results efficiently.</p>
+        </section>
+
+        <section id="experience" class="section">
+            <div class="section-header">
+                <h2>Professional Experience</h2>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-item-content">
+                        <h4>Structural Engineer (Design & Analysis)</h4>
+                        <p>Sowparnika Projects & Infrastructure Pvt. Ltd</p>
+                        <small>Aug 2023 - Present</small>
+                        <ul>
+                            <li>Model preparation of High rise Buildings and villas</li>
+                            <li>Analysis and designing of structural elements with ETABS & SAFE</li>
+                            <li>Reinforcement detailing and GFC drawing release</li>
+                            <li>Site inspections and quality control supervision</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-item-content">
+                        <h4>Senior Engineer (Execution)</h4>
+                        <p>Sowparnika Projects & Infrastructure Pvt. Ltd</p>
+                        <small>Aug 2022 - Aug 2023</small>
+                        <ul>
+                            <li>Construction supervision of high-rise buildings</li>
+                            <li>Quantity take-off and subcontractor billing</li>
+                            <li>Project planning and progress reporting</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-item-content">
+                        <h4>Senior Engineer cum Project Manager</h4>
+                        <p>Infractech Surveys</p>
+                        <small>Feb 2020 - Aug 2020</small>
+                        <ul>
+                            <li>Smart city infrastructure development</li>
+                            <li>Bathymetry surveys and tide chart preparation</li>
+                            <li>Survey team coordination</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-item-content">
+                        <h4>Construction Manager</h4>
+                        <p>Survey Solutions and Construction</p>
+                        <small>Apr 2014 - Feb 2020</small>
+                        <ul>
+                            <li>Procurement and bidding process management</li>
+                            <li>Infrastructure project execution</li>
+                            <li>Subcontractor coordination</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-item-content">
+                        <h4>Project Manager</h4>
+                        <p>DN Consultants</p>
+                        <small>Feb 2012 - Jul 2012</small>
+                        <ul>
+                            <li>Building estimation and billing</li>
+                            <li>Topographical survey management</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-item-content">
+                        <h4>Site In-charge cum Junior Survey Officer</h4>
+                        <p>Dharti Dredging and Infrastructure Ltd</p>
+                        <small>Jan 2011 - Feb 2012</small>
+                        <ul>
+                            <li>Building construction supervision</li>
+                            <li>Dredging operation monitoring</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-item-content">
+                        <h4>Labor Supervisor</h4>
+                        <p>Ambika Constructions</p>
+                        <small>Oct 2006 - Dec 2010</small>
+                        <ul>
+                            <li>Site supervision and labor management</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="education" class="section">
+            <div class="section-header">
+                <h2>Education</h2>
+            </div>
+            <div class="education-grid">
+                <div class="edu-card">
+                    <div class="edu-icon"><i class="fas fa-graduation-cap"></i></div>
+                    <h3 class="edu-degree">Bachelor's in Civil Engineering</h3>
+                    <p class="edu-institute">Biju Pattnaik University of Technology</p>
+                    <p class="edu-duration">May 2014 - May 2017</p>
+                </div>
+                <div class="edu-card">
+                    <div class="edu-icon"><i class="fas fa-certificate"></i></div>
+                    <h3 class="edu-degree">Diploma in Civil Engineering</h3>
+                    <p class="edu-institute">Indira Gandhi National Open University</p>
+                    <p class="edu-duration">Jan 2008 - Jan 2010</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="section">
+            <div class="section-header">
+                <h2>Technical Skills</h2>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <div class="skill-icon"><i class="fas fa-desktop"></i></div>
+                    <div class="circular-progress">
+                        <div class="progress-value">95%</div>
+                    </div>
+                    <div class="skill-name">ETABS</div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon"><i class="fas fa-ruler-combined"></i></div>
+                    <div class="circular-progress">
+                        <div class="progress-value">90%</div>
+                    </div>
+                    <div class="skill-name">AutoCAD</div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon"><i class="fas fa-project-diagram"></i></div>
+                    <div class="circular-progress">
+                        <div class="progress-value">85%</div>
+                    </div>
+                    <div class="skill-name">STAAD Pro</div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon"><i class="fas fa-chart-gantt"></i></div>
+                    <div class="circular-progress">
+                        <div class="progress-value">80%</div>
+                    </div>
+                    <div class="skill-name">Primavera P6</div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon"><i class="fas fa-file-invoice"></i></div>
+                    <div class="circular-progress">
+                        <div class="progress-value">90%</div>
+                    </div>
+                    <div class="skill-name">Billing</div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon"><i class="fas fa-calculator"></i></div>
+                    <div class="circular-progress">
+                        <div class="progress-value">85%</div>
+                    </div>
+                    <div class="skill-name">Quantity Surveying</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section">
+            <div class="section-header">
+                <h2>Contact Information</h2>
+            </div>
+            <div class="contact-info">
+                <div class="contact-card">
+                    <i class="fas fa-envelope"></i>
+                    <div>
+                        <p>Email</p>
+                        <a href="mailto:arunkumardas9@gmail.com">arunkumardas9@gmail.com</a>
+                    </div>
+                </div>
+                <div class="contact-card">
+                    <i class="fas fa-phone"></i>
+                    <div>
+                        <p>Phone</p>
+                        <a href="tel:+917978962054">+91 79789 62054</a><br>
+                        <a href="tel:+919583564922">+91 95835 64922</a>
+                    </div>
+                </div>
+                <div class="contact-card">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div>
+                        <p>Address</p>
+                        <span>Madhuban, Baruni Road, Baripada, Mayurbhanj, Odisha 757001</span>
+                    </div>
+                </div>
+                <div class="contact-card">
+                    <i class="fab fa-linkedin"></i>
+                    <div>
+                        <p>LinkedIn</p>
+                        <a href="https://bit.ly/4bkcX13" target="_blank">linkedin.com/in/arun-kumar-das</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Circular progress animation
+        document.querySelectorAll('.circular-progress').forEach(progress => {
+            const value = progress.querySelector('.progress-value').textContent;
+            progress.style.background = `conic-gradient(var(--primary) 0%, var(--primary) ${value}, #eee ${value})`;
+        });
+    </script>
+</body>
+</html>
